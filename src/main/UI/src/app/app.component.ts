@@ -14,6 +14,10 @@ import {map} from "rxjs/operators";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+// Observables - Not Null
+  welcomeMessageEng$!: Observable<string>;
+  welcomeMessageFre$!: Observable<string>;
+
 
   constructor(private httpClient:HttpClient){}
 
@@ -28,13 +32,19 @@ export class AppComponent implements OnInit{
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
 
+
     ngOnInit(){
+      // Fetching the English and French welcome messages
+      this.welcomeMessageEng$ = this.httpClient.get(this.baseURL + "welcome?lang=en-US", { responseType: "text" });
+      this.welcomeMessageFre$ = this.httpClient.get(this.baseURL + "welcome?lang=fr-CA", { responseType: "text" });
+
+
       this.roomsearch= new FormGroup({
         checkin: new FormControl(' '),
         checkout: new FormControl(' ')
       });
 
- //     this.rooms=ROOMS;
+      //     this.rooms=ROOMS;
 
 
     const roomsearchValueChanges$ = this.roomsearch.valueChanges;
