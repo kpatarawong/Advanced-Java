@@ -1,8 +1,10 @@
 package edu.wgu.d387_sample_code;
 
-import edu.wgu.d387_sample_code.translations.DisplayMessage;
+import edu.wgu.d387_sample_code.translations.DisplayWelcomeMessage;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Locale;
 
@@ -13,24 +15,20 @@ public class D387SampleCodeApplication {
 		SpringApplication.run(D387SampleCodeApplication.class, args);
 
 
-		// Create instances of DisplayMessage for different locales
-		DisplayMessage displayMessage = new DisplayMessage();
+		// Create threads for each welcome message.
 
-		// Create threads for different locales
-		Thread threadUS = new Thread(() -> {
-			Locale locale = Locale.US;
-			String message = displayMessage.getWelcomeMessage(locale);
-			System.out.println("US Thread: " + message);
-		});
+		//English message
+		DisplayWelcomeMessage displayWelcomeMessageEnglish = new DisplayWelcomeMessage(Locale.US);
+		Thread englishMessage = new Thread(displayWelcomeMessageEnglish);
+		englishMessage.start();
 
-		Thread threadFR = new Thread(() -> {
-			Locale locale = Locale.CANADA_FRENCH; // This represents fr_CA
-			String message = displayMessage.getWelcomeMessage(locale);
-			System.out.println("FR Thread: " + message);
-		});
+		//French message
+		DisplayWelcomeMessage displayWelcomemessageFrench = new DisplayWelcomeMessage((Locale.CANADA_FRENCH));
+		Thread frenchmessage = new Thread(displayWelcomemessageFrench);
+		frenchmessage.start();
 
-		// Start threads
-		threadUS.start();
-		threadFR.start();
+
+
+
 	}
 }
