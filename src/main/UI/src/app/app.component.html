@@ -16,7 +16,10 @@
     <nav id="nav" style="position: relative; top: 0; left: 0; bottom: auto; right: auto; width: 100%;">
       <div class="navbar">
         <div class="brand"><a href="/#welcome">Landon <span>Hotel</span></a></div>
-
+        <!-- Displays Presentation Time -->
+        <div class="scene" id="presentation">
+          <b><p style="color: white;">{{presentationTimes$ | async}}</p></b>
+        </div>
       </div><!-- navbar -->
     </nav>
   </div>
@@ -28,12 +31,9 @@
       <!--Displays Welcome Messages -->
       <div>
         <h1>{{welcomeMessageEng$ | async}}</h1>
-        <h1>{{welcomeMessageFre$ | async}}</h1>
+        <h1>{{welcomeMessageFre$ | async}}</h1><br>
       </div>
-      <!-- Displays Presentation Time -->
-      <div class="scene" id="presentation" >
-        <h1>{{presentationTimes$ | async}}</h1>
-      </div>
+
 
       <div class="row">
         <div class=""col-12>
