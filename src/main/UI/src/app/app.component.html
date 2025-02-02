@@ -85,7 +85,8 @@
                 </td>
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong><br/>    <!--Add Prices for other countries with currency pipe-->
+                  <!--Add Different Currency Rate-->
+                  <strong>Price: {{room.price | currency: "USD":'symbol'}}</strong><br/>
                   <strong>Price: {{room.priceCanada | currency:"CAD":'symbol'}}</strong><br/>
                   <strong>Price: {{room.priceEuro | currency: "EUR":'symbol'}}</strong><br/>
                 </td>
